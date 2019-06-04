@@ -91,8 +91,9 @@ class case(unittest.TestCase):
         try:
             assert page_phoneNumber == db_phoneNumber
             print('微信快捷注册登录入会成功！')
-        except:
-            print('微信快捷注册登录入会失败！')
+        except Exception as e:
+            print(e)
+
 
         # 清空测试数据
         delete_localhost_sql = "DELETE FROM saas_member_test_20190428.MEM_UserBase WHERE Phone = " + str(
@@ -162,10 +163,9 @@ class case(unittest.TestCase):
         # 断言
         try:
             #这里再加个业务平台数预存款储值据库的校验
-            assert yck_befor + int(100) == yck_after
-            assert orde_text == '订单状态：已完成'
+            assert yck_befor + int(100) == yck_after and orde_text == '订单状态：已完成'
             print('预存款充值成功！订单状态已完成！')
-        except:
+        except Exception:
             print('预存款充值失败！')
 
 
@@ -217,11 +217,10 @@ class case(unittest.TestCase):
         self.driver.close()
         # 断言
         try:
-            assert db_befor + int(100) == db_after
-            assert yck_befor - float(0.01) == yck_after
+            assert db_befor + int(100) == db_after and yck_befor - float(0.01) == yck_after
             print('代币充值成功，预存款扣款正确！')
-        except:
-            print('代币充值失败！')
+        except Exception as error:
+            print('代币充值失败！',error)
 
     # 代币微信充值
     def test5(self):
@@ -262,11 +261,10 @@ class case(unittest.TestCase):
         db_after = d[0]
         # 断言
         try:
-            assert db_befor + int(100) == db_after
-            assert yck_befor - float(0.01) == yck_after
+            assert db_befor + int(100) == db_after and yck_befor - float(0.01) == yck_after
             print('微信充值代币成功！')
-        except:
-            print('微信充值代币失败！')
+        except Exception as e:
+            print('微信充值代币失败！',e)
 
     # 金币预存款充值
     def test6(self):
@@ -306,8 +304,7 @@ class case(unittest.TestCase):
         self.driver.close()
         # 断言
         try:
-            assert yck_after + float(0.01) == yck_befor
-            assert jb_befor + int(100) == jb_after
+            assert yck_after + float(0.01) == yck_befor and jb_befor + int(100) == jb_after
             print('金币充值成功！')
         except Exception as err:
             print('金币充值失败！',err)

@@ -96,8 +96,8 @@ def AutoLogon(self):
             print(r'当前入会方式为：自动注册入会！')
         elif wayValues == '1':
             print(r'当前入会方式为：购买超级套餐入会！')
-    except:
-        print('查询入会方式失败！')
+    except Exception as error:
+        print('查询入会方式失败！',error)
 
 #购买超级会员套餐
 def BuyMeal(self):
@@ -148,8 +148,8 @@ def BuyMeal(self):
             print(r'当前入会方式为：自动注册入会！')
         elif wayValues == '1':
             print(r'当前入会方式为：购买超级套餐入会！')
-    except:
-        print('查询入会方式失败！')
+    except Exception:
+        print('查询入会方式失败！',Exception)
 
 
 # 后退
