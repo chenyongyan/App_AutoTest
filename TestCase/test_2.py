@@ -39,16 +39,24 @@ class case(unittest.TestCase):
         a = ['//*[@id="asd1fgh3jkldll1"]/div/div/ul/li[1]','//*[@id="asd1fgh3jkldll1"]/div/div/ul/li[2]','//*[@id="asd1fgh3jkldll1"]/div/div/ul/li[3]','//*[@id="asd1fgh3jkldll1"]/div/div/ul/li[4]']
         # 类型
         b = ['//*[@id="IsChange"]/div/div/ul/li[2]', '//*[@id="IsChange"]/div/div/ul/li[3]']
+
         for x in itertools.product(a, b):
 
+            # 点击账期下拉框
             self.dr.find_element_by_xpath('//*[@id="asd1fgh3jkldll1"]/div/div').click()
             time.sleep(1)
+            # 遍历选择下拉框元素
             self.dr.find_element_by_xpath(x[0]).click()
 
+
+            # 点击类型下拉框
             self.dr.find_element_by_xpath('//*[@id="IsChange"]/div/div/button').click()
             time.sleep(1)
+            # 遍历选择类型下拉框元素
             self.dr.find_element_by_xpath(x[1]).click()
 
+
+            # 点击查询
             self.dr.find_element_by_xpath('/html/body/div[1]/div[6]/button[1]').click()
 
     @data('1', '2', '3')
